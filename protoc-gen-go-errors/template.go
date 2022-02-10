@@ -36,7 +36,7 @@ var {{.LowerCamelValue}} *errors.TError
 
 func init() {
 {{- range .Errors }}
-{{.LowerCamelValue}} = errors.New(int(codes.{{.Code}}), "{{.Key}}", {{.Msg}})
+{{.LowerCamelValue}} = errors.New(int(codes.{{.Code}}), "{{.Key}}", "{{.Msg}}")
 errors.Register({{.LowerCamelValue}})
 {{- end }}
 }
