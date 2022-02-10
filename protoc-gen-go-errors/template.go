@@ -40,7 +40,7 @@ func init() {
 errors.Register({{.LowerCamelValue}})
 
 /**
-{{.comment}}
+{{.Comment}}
 */
 
 {{- end }}
