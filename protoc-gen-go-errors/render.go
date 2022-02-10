@@ -82,7 +82,7 @@ const (
 func generationErrorsSection(gen *protogen.Plugin, file *protogen.File, g *protogen.GeneratedFile, enum *protogen.Enum) bool {
 	var ew errorWrapper
 	for _, v := range enum.Values {
-		annos := getAnnotations(string(v.Comments.Trailing))
+		annos := getAnnotations(string(v.Comments.Leading))
 		eCode := annos[fieldLevelCommentAnnotationCode]
 		eMsg := annos[fieldLevelCommentAnnotationMsg]
 		desc := string(v.Desc.Name())
@@ -93,7 +93,7 @@ func generationErrorsSection(gen *protogen.Plugin, file *protogen.File, g *proto
 			LowerCamelValue: strcase.ToLowerCamel(strings.ToLower(desc)),
 			Code:            strcase.ToCamel(strings.ToLower(eCode.val)),
 			Msg:             strcase.ToCamel(strings.ToLower(eMsg.val)),
-			Comment:         string(v.Comments.Trailing),
+			Comment:         string(v.Comments.Leading),
 			Key:             string(v.Desc.FullName()),
 		}
 		ew.Errors = append(ew.Errors, err)
