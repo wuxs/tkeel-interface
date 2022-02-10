@@ -1,4 +1,4 @@
-module github.com/tkeel-io/tkeel-interface/protoc-gen-go-http
+module github.com/wuxs/tkeel-interface/protoc-gen-go-http
 
 go 1.16
 

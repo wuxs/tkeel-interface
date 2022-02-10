@@ -1,4 +1,4 @@
-module github.com/tkeel-io/tkeel-interface/protoc-gen-go-errors
+module github.com/wuxs/tkeel-interface/protoc-gen-go-errors
 
 go 1.16
 
