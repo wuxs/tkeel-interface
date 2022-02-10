@@ -40,16 +40,13 @@ func init() {
 {{.LowerCamelValue}} = errors.New(int(codes.{{.Code}}), "{{.Key}}", "{{.Msg}}")
 errors.Register({{.LowerCamelValue}})
 
-test = "{{.Comment}}"
-
-
+test = {{.Comment}}
 
 {{- end }}
 }
 
 {{ range .Errors }}
 func {{.UpperCamelValue}}() errors.Error {
-	 println("{{.Comment}}")
 	 return {{.LowerCamelValue}}
 }
 {{ end }}
