@@ -22,7 +22,6 @@
 package main
 
 import (
-	"fmt"
 	"regexp"
 	"strings"
 
@@ -94,6 +93,7 @@ func generationErrorsSection(gen *protogen.Plugin, file *protogen.File, g *proto
 			LowerCamelValue: strcase.ToLowerCamel(strings.ToLower(desc)),
 			Code:            strcase.ToCamel(strings.ToLower(eCode.val)),
 			Msg:             strcase.ToCamel(strings.ToLower(eMsg.val)),
+			Comment:         string(v.Comments.Leading),
 			Key:             string(v.Desc.FullName()),
 		}
 		ew.Errors = append(ew.Errors, err)
@@ -114,7 +114,7 @@ type annotation struct {
 }
 
 func getAnnotations(comment string) map[string]annotation {
-	fmt.Println(comment)
+	println(comment)
 	matches := filedLevelCommentRgx.FindAllStringSubmatch(comment, -1)
 	return findMatchesFromComments(matches)
 }

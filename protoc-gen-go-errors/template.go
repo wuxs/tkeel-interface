@@ -34,6 +34,10 @@ const errorsTpl = `
 var {{.LowerCamelValue}} *errors.TError
 {{- end }}
 
+/**
+{{.comment}}
+*/
+
 func init() {
 {{- range .Errors }}
 {{.LowerCamelValue}} = errors.New(int(codes.{{.Code}}), "{{.Key}}", "{{.Msg}}")
@@ -53,6 +57,7 @@ type errorInfo struct {
 	Value           string
 	Code            string
 	Msg             string
+	Comment         string
 	UpperCamelValue string
 	LowerCamelValue string
 	Key             string
