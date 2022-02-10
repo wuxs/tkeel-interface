@@ -34,14 +34,15 @@ const errorsTpl = `
 var {{.LowerCamelValue}} *errors.TError
 {{- end }}
 
-/**
-{{.comment}}
-*/
-
 func init() {
 {{- range .Errors }}
 {{.LowerCamelValue}} = errors.New(int(codes.{{.Code}}), "{{.Key}}", "{{.Msg}}")
 errors.Register({{.LowerCamelValue}})
+
+/**
+{{.comment}}
+*/
+
 {{- end }}
 }
 
