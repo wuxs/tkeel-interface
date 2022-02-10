@@ -82,7 +82,13 @@ const (
 func generationErrorsSection(gen *protogen.Plugin, file *protogen.File, g *protogen.GeneratedFile, enum *protogen.Enum) bool {
 	var ew errorWrapper
 	for _, v := range enum.Values {
-		annos := getAnnotations(string(v.Comments.Leading))
+		comments := make([]string, len(v.Comments.LeadingDetached)+1)
+		for i, value := range v.Comments.LeadingDetached {
+			comments[i] = string(value)
+		}
+		comments[len(v.Comments.LeadingDetached)] = string(v.Comments.Leading)
+		comment := strings.Join(comments, "\n")
+		annos := getAnnotations(comment)
 		eCode := annos[fieldLevelCommentAnnotationCode]
 		eMsg := annos[fieldLevelCommentAnnotationMsg]
 		desc := string(v.Desc.Name())
