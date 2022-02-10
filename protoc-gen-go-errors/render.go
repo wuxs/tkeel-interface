@@ -22,6 +22,7 @@
 package main
 
 import (
+	"fmt"
 	"regexp"
 	"strings"
 
@@ -113,6 +114,7 @@ type annotation struct {
 }
 
 func getAnnotations(comment string) map[string]annotation {
+	fmt.Println(comment)
 	matches := filedLevelCommentRgx.FindAllStringSubmatch(comment, -1)
 	return findMatchesFromComments(matches)
 }
