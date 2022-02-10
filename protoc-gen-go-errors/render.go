@@ -93,7 +93,7 @@ func generationErrorsSection(gen *protogen.Plugin, file *protogen.File, g *proto
 			LowerCamelValue: strcase.ToLowerCamel(strings.ToLower(desc)),
 			Code:            strcase.ToCamel(strings.ToLower(eCode.val)),
 			Msg:             strcase.ToCamel(strings.ToLower(eMsg.val)),
-			Comment:         string(v.Comments.Leading),
+			Comment:         string(v.Comments.Trailing),
 			Key:             string(v.Desc.FullName()),
 		}
 		ew.Errors = append(ew.Errors, err)

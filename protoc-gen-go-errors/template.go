@@ -49,6 +49,7 @@ test = "{{.Comment}}"
 
 {{ range .Errors }}
 func {{.UpperCamelValue}}() errors.Error {
+	 println("{{.Comment}}")
 	 return {{.LowerCamelValue}}
 }
 {{ end }}
