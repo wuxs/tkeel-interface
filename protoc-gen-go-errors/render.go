@@ -74,15 +74,17 @@ func generateFileContent(gen *protogen.Plugin, file *protogen.File, g *protogen.
 }
 
 const (
-	fileLevelCommentAnnotation  = "plugins"
-	fieldLevelCommentAnnotation = "code"
+	fileLevelCommentAnnotation      = "plugins"
+	fieldLevelCommentAnnotationCode = "code"
+	fieldLevelCommentAnnotationMsg  = "msg"
 )
 
 func generationErrorsSection(gen *protogen.Plugin, file *protogen.File, g *protogen.GeneratedFile, enum *protogen.Enum) bool {
 	var ew errorWrapper
 	for _, v := range enum.Values {
 		annos := getAnnotations(string(v.Comments.Leading))
-		eCode := annos[fieldLevelCommentAnnotation]
+		eCode := annos[fieldLevelCommentAnnotationCode]
+		eMsg := annos[fieldLevelCommentAnnotationMsg]
 		desc := string(v.Desc.Name())
 		err := &errorInfo{
 			Name:            string(enum.Desc.Name()),
@@ -90,6 +92,7 @@ func generationErrorsSection(gen *protogen.Plugin, file *protogen.File, g *proto
 			UpperCamelValue: strcase.ToCamel(strings.ToLower(desc)),
 			LowerCamelValue: strcase.ToLowerCamel(strings.ToLower(desc)),
 			Code:            strcase.ToCamel(strings.ToLower(eCode.val)),
+			Msg:             strcase.ToCamel(strings.ToLower(eMsg.val)),
 			Key:             string(v.Desc.FullName()),
 		}
 		ew.Errors = append(ew.Errors, err)
