@@ -104,7 +104,7 @@ func generationErrorsSection(gen *protogen.Plugin, file *protogen.File, g *proto
 	return false
 }
 
-var filedLevelCommentRgx, _ = regexp.Compile(`@(\w+)=([_a-zA-Z0-9-,]+)`)
+var filedLevelCommentRgx, _ = regexp.Compile(`@(\w+)=(.+)`)
 var fileLevelCommentRgx, _ = regexp.Compile(`@(\w+)=([_a-zA-Z0-9-,]+)`)
 
 type annotation struct {
